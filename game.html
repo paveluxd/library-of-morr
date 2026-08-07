@@ -31,14 +31,31 @@
 
         <!-- Preload fonts -->
         <style>
-            /* Fonts */
+            /* Inter */
             @font-face {
-                font-family: 'Grenze';
+                font-family: 'InterWeb';
+                src: url('/04-DATA/Inter-VariableFont_opsz\,wght.ttf') format("truetype-variations");
+                font-weight: 100 900;   /* full range */
+                font-style: normal;
+                font-display: swap;
+            }
+            @font-face {
+                font-family: 'InterWeb';
+                src: url('/04-DATA/Inter-Italic-VariableFont_opsz\,wght.ttf') format("truetype-variations");
+                font-weight: 100 900;   /* full range */
+                font-style: italic;
+                font-display: swap;
+            }
+
+            /* Grenze */
+            @font-face {
+                font-family: 'GrenzeWeb';
                 src: url('/04-DATA/Grenze-Medium.ttf') format('truetype');
                 font-weight: 500;
                 font-style: normal;
                 font-display: swap;
             }
+
             h1, h2, h3{
                 font-family: 'Grenze', serif;
             }
@@ -74,7 +91,7 @@
         <meta name="theme-color" content="#ffffff">
     </head>
 
-    <body id="body">
+    <body id="body" class="body-1">
 
     <!-- Navigation -->
         <div id="nav-wrapper">
@@ -117,11 +134,11 @@
                         <div class="divider"></div>
 
                     <!-- Research btn-->
-                    <button class="nav-button" onclick="toggleModal('research')">
+                    <!-- <button class="nav-button" onclick="toggleModal('research')">
                         <img src="./03-IMG/ico/id=book, variant=1.svg">
                     </button>
 
-                        <div class="divider"></div>
+                        <div class="divider"></div> -->
 
                     <!-- Menu -->
                     <div id="menu-container">
@@ -144,58 +161,51 @@
                 <div id="hand" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
             </div>
 
-            <button id="exit-demolisher" class="fill-bg hide" onclick="destroyBuilding('exit')">Exit demolisher mode</button>
+            <button id="exit-demolisher" class="hide" onclick="destroyBuilding('exit')">Exit demolisher mode</button>
         </div>
 
     <!-- Modal wrapper-->
         <div id="modal-wrapper">
 
             <!-- Collection -->
-            <div id="collectionModal" class="modal hide">
+            <div id="collectionModal" class="modal hide body-2">
                 <div class="collection-container">
 
                     <div class="modal-nav">
-                        <h2 class="modal-heading">Relic collection</h2>
+                        <div class="tab-group row">
+                            <!-- Prev page btn -->
+                            <button class="secondary-btn" onclick="g.collection.loadPage('previous')">
+                                <img src="./03-IMG/ico/id=arrow-l.svg" alt="">
+                            </button>
+    
+                            <div id="collection-tabs" class="flex"></div>
+    
+                            <!-- Next page btn -->
+                            <button class="secondary-btn" onclick="g.collection.loadPage('next')">
+                                <img src="./03-IMG/ico/id=arrow-r.svg" alt="">
+                            </button>
+                        </div>
 
                         <!-- Close button -->
-                        <button class="secondary-btn" onclick="el('collectionModal').classList.add('hide')">
+                        <button class="secondary-btn close-btn" onclick="el('collectionModal').classList.add('hide')">
                             <img src="./03-IMG/ico/item-x.svg" alt="">
                         </button>
                     </div>
 
-                    <div class="modal-body flex">
-
-                        <div class="tab-group">
-
-                            <!-- Prev page btn -->
-                            <button class="secondary-btn" onclick="g.collection.loadPage('previous')">
-                                <img src="./03-IMG/ico/id=arrow-u.svg" alt="">
-                            </button>
-
-                            <div id="collection-tabs"></div>
-
-                            <!-- Next page btn -->
-                            <button class="secondary-btn" onclick="g.collection.loadPage('next')">
-                                <img src="./03-IMG/ico/id=arrow-d.svg" alt="">
-                            </button>
-                        </div>
-
-
-                        <!-- Cards -->
-                        <div 
-                            id="collection" 
-                            class="collection card-slot-grid" 
-                            ondrop = "drop(event)"
-                            ondragover = 'allowDrop(event)'
-                        ></div>
-                    </div>
-
+                    <!-- Cards -->
+                    <div 
+                        id="collection" 
+                        class="collection card-slot-grid perim-border" 
+                        ondrop = "drop(event)"
+                        ondragover = 'allowDrop(event)'
+                    ></div>
+                    
                 </div>
             </div>
 
             <!-- TREE-->
             <div id="tree" class="modal hide">
-                <div class="modal-container modal-dark perim-border">
+                <div class="modal-container perim-border">
 
                     <!--Nav-->
                     <div class="modal-nav">
@@ -222,7 +232,7 @@
                 </div>
             </div>
 
-            <!-- MINE -->
+            <!-- TAVERN -->
             <div id="tavern" class="modal hide">
                 <div class="modal-container">
 
@@ -240,7 +250,7 @@
                     <div class="btn-container">
                         <p>Get coins.<br><br></p>
 
-                        <button id="reward-btn" class="secondary-btn" onclick="g.getReward()">
+                        <button id="reward-btn" class="" onclick="g.getReward()">
                             <div id="reward-timer"></div>
                         </button>
                     </div>
@@ -248,7 +258,7 @@
             </div>
 
             <!-- LABs -->
-            <!-- Objects-->
+            <!-- L:Objects-->
             <div id="objectsModal" class="modal hide">
                 <div class="modal-container">
 
@@ -280,7 +290,7 @@
                 </div>
             </div>
 
-            <!--Gravitation-->
+            <!-- L:Gravitation-->
             <div id="gravitationModal" class="modal hide">
                 <div class="modal-container">
 
@@ -313,7 +323,7 @@
                 </div>
             </div>
 
-            <!-- Orbit-->
+            <!-- L:Orbit-->
             <div id="orbitModal" class="modal hide">
 
                 <div class="modal-container">
@@ -350,7 +360,6 @@
 
 
             <!-- RESEARCH -->
-
             <div id="research" class="modal hide">
                 <!-- Contract -->
                 <div id="contract" class="contract-container">
@@ -374,9 +383,7 @@
 
                             <div id="contract-controls">
                                 <button id="contract-button" onclick="g.research.sellResearch()">Submit</button>
-                                <div class="divider"></div>
                                 <button id="contract-button-skip" onclick="g.plObj.pay('skip research')">Skip</button>
-                                <div class="divider"></div>
                                 <button id="" onclick="g.plObj.pay('skip research')">See answer</button>
                             </div>
                         </div>
@@ -393,7 +400,7 @@
                         <img src="./03-IMG/ico/item-x.svg" alt="">
                     </button>
 
-                    <h1>Inspection table</h1>
+                    <h1>Library</h1>
 
                     <div class="row">
                         <div>
@@ -422,7 +429,7 @@
                     </div>
 
                     <div class="modal-body">
-                        <div id="sell-area" class="card-container on-light" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                        <div id="sell-area" class="card-container" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                         <button id="sellButton" onclick="g.sellArea.sell()">Transmute relic</button>
                         <button id="sellAllButton" onclick="g.sellArea.sell('hand')">Transmute all relics in hand</button>
 
@@ -431,11 +438,11 @@
             </div>
 
             <!-- BUILDERS -->
-            <div id="builders" class=" modal hide">
+            <div id="builders" class="modal hide">
                 <div class="modal-container">
 
                     <div class="modal-nav">
-                        <h1 class="modal-heading">Buildings</h1>
+                        <h2 class="modal-heading">Buildings</h2>
 
                         <!-- Close button -->
                         <button class="secondary-btn close-btn" onclick="el('builders').classList.add('hide')">
@@ -454,7 +461,7 @@
                 <div class="modal-container">
 
                     <div class="modal-nav">
-                        <p>Demolish</p>
+                        <h2>Demolish</h2>
 
                         <!-- Close button -->
                         <button class="secondary-btn close-btn" onclick="el('demolisher').classList.add('hide')">

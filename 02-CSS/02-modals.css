@@ -20,72 +20,58 @@
         pointer-events: none;
         padding: 48px;
     }
-    #modal-wrapper *{
-        pointer-events: all;
-    }
+        #modal-wrapper *{
+            pointer-events: all;
+        }
+
     .modal{
         z-index: 10;
         position: relative;
     }
-    .modal-container{
-        display: flex;
-        flex-direction: column;
+        .modal-container{
+            background-color: var(--modal-bg);
+            min-width: 320px;
+            height: 480px;
+            overflow: hidden;
 
-        background-color: #EAE2D0;
-        min-width: 320px;
+            display: flex;
+            flex-direction: column;
+        }
+            .modal-nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                height: 64px;
 
-        height: 480px;
-        overflow: hidden;
-    }
-    .card-container.on-light, #contract-content .card-container{
-        width: 100%;
-        height: 76px;
+                position: relative;
 
-        outline: 6px solid var(--b20);
-        border: 2px dashed var(--b);
-        background-color: var(--b20);
-    }
-    .modal-nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 64px;
+                padding: 0 0 0 24px;
+                background-color: var(--w20);
+            }
+                .modal-heading{
+                    margin-bottom: 2px;
+                }
+                .close-btn{
+                    width: 64px;
+                    height: 64px;
 
-        position: relative;
+                    border-radius: 0;
+                }
+            .modal-body{
+                display: flex;
+                flex-direction: column;
+                flex-grow: 1;
 
-        padding: 0 0 0 24px;
-        /*box-shadow: 0px 2px 0 var(--b10);*/
-        background-color: var(--w20);
-    }
-    .modal-heading{
-        margin-bottom: 2px;
-    }
-    .close-btn{
-        width: 64px;
-        height: 64px;
+                gap: 24px;
+                margin: 24px;
+            }
+                .modal .btn-container{
+                    display: flex;
+                    gap: 8px;
+                    flex-direction: column;
 
-        border-radius: 0;
-    }
-    .modal-body{
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-
-        gap: 24px;
-        margin: 24px;
-    }
-    .modal .btn-container{
-        display: flex;
-        gap: 8px;
-        flex-direction: column;
-
-        padding: 24px 24px 24px 24px;
-    }
-
-    .modal-dark{
-        background-color: #1D1D1D;
-        color: var(--w70);
-    }
+                    padding: 24px 24px 24px 24px;
+                }
 
 
 
@@ -101,8 +87,6 @@
     }
     #builders .modal-nav {
         background-color: #000;
-        color: var(--yellow-accent);
-
         width: 100%;
     }
     .modal .structures-container{
@@ -129,17 +113,12 @@
         width: 240px;
 
         position: relative;
-        background-color: #333333;
-        color: white;
+        background-color: var(--ui-dark-2);
 
         overflow: hidden;
-        border-radius: 0px;
         border: none;
 
         padding: 0;
-    }
-    .btn-structure:hover{
-        background: linear-gradient(to bottom, #676866, #646562);
     }
     .btn-structure .data-container{
         display: flex;
@@ -225,91 +204,14 @@
     }
     #contract-controls{
         display: flex;
-        /*outline: 2px solid black;*/
+        gap: 4px;
         box-shadow: inset 0px 0px 0px 2px black;
     }
     #contract-controls button {
         height: 72px;
         width: 100%;
-        border-radius: 0px;
-        border: none;
         flex-shrink: 1;
-        box-shadow: inset 0px -4px 0px 0 black;
     }
-    #contract-controls .divider{
-        height: 100%;
-    }
-
-    
-/* Archeologist modal */
-    #archeologist{
-        background-color: #37343B;
-        box-shadow: var(--perim-border);
-        position: relative;
-
-        .modal-nav{
-            background-color: var(--w0);
-            color: var(--yellow-accent);
-        }
-    }
-    #archeologist .page-btn{
-        position: absolute;
-        right: 0;
-        top: 50%;
-    }
-    #market-container{
-        width: 672px;
-        height: 360px;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 24px;
-
-        padding: 24px;
-
-        position: relative;
-
-        color: var(--font-color-light);
-    }
-    .market-item{
-        padding: 12px 12px 0 12px;
-        position: relative;
-    }
-    .market-item .button {
-        width: 100%;
-        height: 100%;
-
-        display: none;
-
-        position: absolute;
-        left: 0;
-        bottom: 50%;
-        transform: translateY(50%);
-    }
-    .market-item:hover{
-        background-color: var(--b20);
-    }
-    .market-item:hover .button{
-        display: flex;
-        background-color: grey !important;
-    }
-    .market-item .btn-container{
-        display: flex;
-        gap: 8px;
-        flex-direction: column;
-    }
-    .market-item img{
-        max-width: 282px;
-    }
-  
-    #dude{
-        position: absolute;
-        bottom: 0;
-        left: 0;
-    }
-
 
 /* Inspection table */
     .table-container{

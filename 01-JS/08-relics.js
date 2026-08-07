@@ -61,10 +61,12 @@
             let card = this.genHtml()
             
             //Append html element to location  
+            
             if(el(this.location) !== null){
                 if(this.location === 'collection'){
                     
                     //Only adds cards of active page
+                    console.log(this.set, g.collection.page);
                     if(this.set.includes(g.collection.page)){
                         el('collection').append(card)
                     }
@@ -88,7 +90,7 @@
             // let cardImg = this.name used to assign image linked with name
             
             card.id = this.cardId
-            card.classList = 'card'
+            card.classList = 'card dark-text'
             card.setAttribute('draggable','true')
             card.setAttribute('ondragstart','drag(event)')
 
@@ -157,15 +159,15 @@
         constructor(){
 
             //Collection pages
-            this.pageIdArr = labRef
-            this.page = labRef[0] //Update id to default page
+            this.pageIdArr = Object.keys(labRef)
+            this.page = this.pageIdArr[0] //Update id to default page
 
             //Add tab per page
             this.pageIdArr.forEach(pageId => {
                 let tab = document.createElement('button')
                 tab.id = `${pageId}_tab`
                 tab.setAttribute('onclick', `g.collection.loadPage('${pageId}')`)
-                tab.innerHTML = upp(pageId)
+                tab.innerHTML = `<h3>${labRef[pageId].tabName}</h3>`
                 
                 //Set 1st tab as active
                 tab.classList = 'tab collection-tab'
@@ -222,12 +224,17 @@
 
             //Clear album
             el('collection').innerHTML = ``
+            console.log(2);
+            
             this.regenerateCards()
             this.setActiveTab()
         }
 
         regenerateCards(){
+            console.log(1);
+            
             g.cards.forEach(card => {                
+                console.log(card.set, this.page);
                 if(card.set.includes(this.page)){
                     el('collection').append(card.genHtml())
                 }      

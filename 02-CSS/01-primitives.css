@@ -6,6 +6,7 @@
     --w50: rgba(255,255,255,0.5);
     --w70: rgba(255,255,255,0.7);
     --w80: rgba(255, 255, 255, .80);
+    --w: white;
 
     --b05: rgba(0,0,0,0.05);
     --b10: rgba(0,0,0,0.10);
@@ -13,23 +14,24 @@
     --b50: rgba(0,0,0,0.5);
     --b80: rgba(0,0,0,0.8);
     --b: rgba(0,0,0,1);
-
-    --bg: rgb(100, 100, 100);
-    --modal-bg: #EAE2D0;
-    --modal-bg-dark: #333333;
-    --yellow-accent: #F6C57B;
-
+    
+    /* Modal */
+    --modal-bg: #000;
+    --ui-dark-1: #242424;
+    --ui-dark-2: #3a3a3a;
+    
+    /* Relic */
     --card-width: 208px;
     --card-height: 60px;
     --card-offset: 0px;
     --section-width: 800px;
+    
+    /* Text */
+    --text-color-dark: rgba(0,0,0,0.88);
+    --text-color-light: rgba(255, 255, 255, 0.88);
+    --yellow-accent: #F6C57B;
 
-    --nav-color: rgb(74, 74, 74);
-    --nav-max-width: 1280px;
-
-    --font-color: rgba(0,0,0,0.88);
-    --font-color-light: rgba(236, 237, 212, 0.88);
-
+    /* Map */
     --sky-color: #9CBAD1;
     --ground-color: #6A7364;
     --map-width: 2304px;
@@ -40,20 +42,63 @@
     --btn-bg:         #2F3138;
     --btn-bg-hover:   #23242b;
     --btn-border:     #949494;
-
-    /* TYPOGRAPHY */
-    --heading-yellow: #F6C57B;
 }
-  
+
+/* DEBUG */
 /*body *{*/
 /*    box-shadow: inset 0 0 0 1px rgba(255,255,0,0.5);*/
 /*}*/
+
+
+/* TEXT GLOBAL */
+html, p, span, h1, h2, h3, button{
+    font-family: 'InterWeb', 'Arial', sans-serif;
+    color: var(--text-color-light);
+
+    -webkit-font-smoothing: antialiased;     /* Chrome, Safari, Edge (macOS) */
+    -moz-osx-font-smoothing: grayscale;      /* Firefox (macOS) */
+    text-rendering: optimizeLegibility;      /* Better kerning/ligatures */
+}
+h1, h2, h3 {
+    color: var(--yellow-accent);
+    font-family: 'GrenzeWeb', sans-serif;
+}
+h1{
+    font-size: 32px;
+}
+h2{
+    font-size: 26px;
+}
+h3{
+    font-size: 18px;
+}
+
+.dark-text *{
+        color: var(--text-color-dark) !important;
+}
+.body-1 {
+    font-size: 16px;
+    line-height: 24px;
+}
+.body-2 {
+    font-size: 14px;
+    line-height: 20px;
+}
+.italic {
+    font-style: italic;
+}
+.bold {
+    font-weight: 600;
+}
+
+
+/* Layout */
 *, html{
     /* Disables gestures */
     touch-action: none; 
 
     /*Removes browser stretching on scroll*/
-    overscroll-behavior: none;
+    overscroll-behavior: none;  
 }
 *{
     padding: 0;
@@ -64,18 +109,9 @@
     /* Prevents flexbox resizing */
     flex-grow: 0;
     flex-shrink: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; 
 }
 body{
-    font-family: 'Arial', sans-serif;
-    line-height: 150%;
-    font-size: 16px;
-    color: var(--font-color);
-    
-    -webkit-font-smoothing: antialiased;     /* Chrome, Safari, Edge (macOS) */
-    -moz-osx-font-smoothing: grayscale;      /* Firefox (macOS) */
-    text-rendering: optimizeLegibility;      /* Better kerning/ligatures */
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -86,21 +122,6 @@ body{
     /*overflow: hidden;*/
 
     background: linear-gradient(to bottom, var(--sky-color) 50%, var(--ground-color) 50%);
-
-
-}
-
-/*Text*/
-h1{
-    font-size: 32px;
-}
-h2{
-    font-size: 26px;
-    letter-spacing: 0.1px;
-}
-h3{
-    font-size: 18px;
-    letter-spacing: 0.1px;
 }
 
 
@@ -119,6 +140,9 @@ h3{
     jsustify-content: center;
     align-items: center;
 }
+.row{
+    flex-direction: row !important;
+}
 
 
 /* Button */
@@ -126,10 +150,9 @@ h3{
     height: 56px;
 
     min-width: 60px;
-    padding: 3px 16px 0px 16px;
-    border-radius: 8px;
+    padding: 0px 16px 0px 16px;
 
-    border: 2px solid var(--b20);
+    border: 2px solid var(--w20);
     background-color: var(--w0);
 
     display: flex;
@@ -139,34 +162,24 @@ h3{
     line-height: 100%;
     text-align: center;
     z-index: 2;
-}
-.fill-bg{
-    background-color: white;
-}
-button img {
-    padding-bottom: 3px;
+
+    cursor: pointer;
 }
 button:hover{
-    background-color: var(--b10) !important;
-    cursor: pointer;
-}
-button.fill-bg:hover{
-    background-color: rgb(240,240,240) !important;
-    cursor: pointer;
-}
-#nav button:hover{
-    background-color: var(--w10) !important;
+    background-color: var(--w20) !important;
 }
 
-.button.light, button.light{
-    color: var(--font-color-light) !important;
-    border: 2px solid var(--w20);
-}
 .button:disabled, button:disabled{
     pointer-events: none;
     opacity: 40%;
 }
 
+/* Needed for close btns and tab navigators */
+.secondary-btn{
+    background-color: var(--w0);
+    border-radius: 0;
+    border: none
+}
 
 
 
@@ -185,12 +198,13 @@ button.fill-bg:hover{
 }
 #nav {
     /*width: calc(100% - 24px);*/
-    max-width: var(--nav-max-width);
+    max-width: 1280px;
     width: calc(100% - 16px);
 
     display: flex;
     align-items: flex-end;
     gap: 8px;
+    
 
     /* filter: drop-shadow(0px 0px 12px rgba(0,0,0,0.8)); */
     .btn-group{
@@ -209,13 +223,9 @@ button.fill-bg:hover{
 
     /* flex-grow: 1; */
     border-radius: 8px;
-    background-color: rgb(36, 36, 36);
+    background-color: var(--ui-dark-1);
     border: 2px solid black;
     height: calc(var(--card-height) + 8px);
-
-    button:hover{
-        background-color: var(--w10);
-    }
 }
 .divider{
     background-color: black;
@@ -225,7 +235,6 @@ button.fill-bg:hover{
 .nav-button{
     border: none;
     border-radius: 0;
-    color: white;
     height: calc(var(--card-height) + 8px);
     padding: 0 14px;
     min-width: 0;
@@ -239,11 +248,6 @@ button.fill-bg:hover{
     align-items: center;
     justify-content: flex-start;
 
-    font-family: monospace;
-    font-size: 14px;
-
-    color: var(--font-color-light);
-
 }
 .stat-container {
     height: 32px;
@@ -254,9 +258,6 @@ button.fill-bg:hover{
     gap: 4px;
 
     margin: 0 0 0 24px;
-}
-#coin-indicator{
-    color: #FBC327;
 }
 
 #hand {
@@ -328,7 +329,6 @@ button.fill-bg:hover{
     z-index: 10000;
 
     background-color: black;
-    color: var(--w70);
     font-size: 14px;
 
     cursor: pointer;

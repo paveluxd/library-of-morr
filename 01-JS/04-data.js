@@ -173,6 +173,19 @@ let modalsRef = {
     collectionModal:{id: 'collectionModal'},
 }
 
-let labRef = ['objects','gravitation','orbit']
+let labRef = {
+    objects: {
+        id:'objects',
+        tabName: 'I',
+    },
+    gravitation: {
+        id:'gravitation',
+        tabName: 'II'
+    },
+    orbit: {
+        id:'orbit',
+        tabName: 'III'
+    }
+}
 
 let resourcesRef = ['wood', 'stone', 'coins']

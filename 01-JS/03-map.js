@@ -10,8 +10,8 @@ class GameMap{
         
         //MAP css
         this.mapElem = el('map')
-        this.cellSize = 24
-        this.gridWidth = 80
+        this.cellSize = 12
+        this.gridWidth = 160
 
 
         //Set map width
@@ -116,7 +116,7 @@ class GameMap{
         else {
             this.envDecorations = {}
             rootRefObj = envDecorationsRef
-            console.log('New env ref:', rootRefObj)
+            // console.log('New env ref:', rootRefObj)
 
             for(let key in rootRefObj) {
                 //Add sprites object to stored ref object once per key
